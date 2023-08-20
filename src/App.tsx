@@ -1,12 +1,20 @@
+import { AppComponent, GlobalStyles } from "./app.style";
+import { Saidbar } from "./uiKit/saidbar/saidbar";
 
-import './index.css';
-
+const Obj = {
+  a: 1,
+  b: 2,
+  c: 3,
+};
 
 function App() {
   return (
-    <div >
-      App
-    </div>
+    <>
+      <GlobalStyles />
+      <AppComponent>
+        <Saidbar />
+      </AppComponent>
+    </>
   );
 }
 
