@@ -1,19 +1,17 @@
-import { AppComponent, GlobalStyles } from "./app.style";
-import { Saidbar } from "./uiKit/saidbar/saidbar";
-
-const Obj = {
-  a: 1,
-  b: 2,
-  c: 3,
-};
+import { GlobalStyles } from "./app.style";
+import { NavigationLayout } from "./layouts";
 
 function App() {
+  const activeView: string = "page2";
   return (
     <>
       <GlobalStyles />
-      <AppComponent>
-        <Saidbar />
-      </AppComponent>
+      {activeView === "page1" && (
+        <NavigationLayout>Гимис колбис</NavigationLayout>
+      )}
+      {activeView === "page2" && (
+        <NavigationLayout>Другой контент</NavigationLayout>
+      )}
     </>
   );
 }

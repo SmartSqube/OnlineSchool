@@ -1,8 +1,9 @@
 import { FC } from "react";
-import { Button } from "../button";
-import { SaidBarContiner } from "./ saidbar.styles";
 
-export const Saidbar: FC = ({}) => {
+import { SaidBarContiner } from "./ saidbar.styles";
+import { Button } from "../../../uiKit/button";
+
+export const Saidbar: FC = () => {
   return (
     <SaidBarContiner>
       <Button icon="AlphabetIcon" text="Алфавит" />

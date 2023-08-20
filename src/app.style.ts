@@ -1,5 +1,3 @@
-import { styled } from "styled-components";
-
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyles = createGlobalStyle`
@@ -91,9 +89,4 @@ legend {
 	display: block;
 }
 
-`;
-
-export const AppComponent = styled.div`
-  height: 100vh;
-  width: 100vw;
 `;
