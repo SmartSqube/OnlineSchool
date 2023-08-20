@@ -1,12 +1,12 @@
-
-import './index.css';
-
+import { GlobalStyles } from "./app.styles";
+import { NavigationLayout } from "./layouts";
 
 function App() {
   return (
-    <div >
-      App
-    </div>
+    <>
+      <GlobalStyles />
+      <NavigationLayout>Гимис колбис</NavigationLayout>
+    </>
   );
 }
 
