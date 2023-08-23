@@ -10,6 +10,7 @@ import { ReactComponent as RectIcon } from "./rect-icon.svg";
 import { ReactComponent as SoundOffIcon } from "./sound_off-icon.svg";
 import { ReactComponent as SoundIcon } from "./sound-icon.svg";
 import { ReactComponent as UpdateIcon } from "./update-icon.svg";
+import { ReactComponent as AppLogo } from "./update-icon.svg";
 
 export const IconMap = {
   HomeIcon,
@@ -24,6 +25,7 @@ export const IconMap = {
   SoundOffIcon,
   SoundIcon,
   UpdateIcon,
+  AppLogo,
 } as const;
 
 export type IconName = keyof typeof IconMap;

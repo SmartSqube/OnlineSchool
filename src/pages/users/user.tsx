@@ -1,10 +1,10 @@
 import { FC } from "react";
-import './user.css';
+import "./user.styles.ts";
 
-export const User:FC = ()=>{
-    return(
-        <div>
-            <button>Play</button>
-        </div>
-    )
-}
+export const User: FC = () => {
+  return (
+    <div>
+      <button>Play</button>
+    </div>
+  );
+};
