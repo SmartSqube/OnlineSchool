@@ -1,16 +1,17 @@
 import { css, styled } from "styled-components";
 
-export const ButtonContiner = styled.span`
+export const ProgressbarContainer = styled.span`
   min-width: 150px;
-  max-width: 350px;
+  max-width: 500px;
+  min-height: 20px;
   display: flex;
   gap: 16px;
   padding: 8px;
   align-items: center;
   border-radius: 4px;
-  background: #76e9e9;
+  background: #85ffac;
   margin: 4px;
-  box-shadow: 2px #76e9e9;
+  padding: 4px;
 `;
 
 export const Lable = styled.span`

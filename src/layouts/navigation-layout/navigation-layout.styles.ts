@@ -22,4 +22,5 @@ export const Content = styled.div`
   width: 100%;
   height: 100%;
   padding: 32px;
+  background: #d9d9d9;
 `;
