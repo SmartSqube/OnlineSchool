@@ -13,12 +13,12 @@ export const Right = styled.div`
   height: 100%;
 `;
 
-export const Header = styled.div`
-  width: 100%;
-  height: 40px;
-  background-color: #f00;
-`;
 export const Content = styled.div`
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
   height: 100%;
   padding: 32px;
