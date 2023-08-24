@@ -79,7 +79,7 @@ export const GameInfo: FC<GameInfoProps> = ({
   return (
     <MathGame
       maxErrors={3}
-      maxTimer={66}
+      maxTimer={100}
       knowledge={knowladge}
       sign={sign}
       signCalc={signCalc}
