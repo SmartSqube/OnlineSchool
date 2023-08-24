@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import { css, styled } from "styled-components";
 
 export const MathGamec = styled.div`
   display: flex;
@@ -8,9 +8,16 @@ export const MathGamec = styled.div`
   height: 100%;
   align-items: center;
 `;
-export const MathGameContainer = styled.div`
+export const MathGameContainer = styled.div<{
+  $color: string;
+}>`
+  padding: 32px;
+  border-radius: 16px;
   min-width: 400px;
   display: flex;
   flex-direction: column;
   gap: 4px;
+  ${(props) => css`
+    border: 2px solid ${props.$color};
+  `}
 `;

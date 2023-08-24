@@ -61,7 +61,7 @@ export const MathGame: FC<MathGameProps> = memo(
 
     return (
       <MathGamec>
-        <MathGameContainer>
+        <MathGameContainer $color={clue ? "red" : "lightgrey"}>
           <Progressbar
             color="TIME_COLOR"
             iconName="TimeIcon"
