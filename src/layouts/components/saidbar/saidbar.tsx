@@ -14,9 +14,14 @@ export const Saidbar: FC = () => {
     <SaidBarContiner>
       <Button icon="AppLogo" text="" onClick={() => setActiveView("page1")} />
       <Button
-        icon="AlphabetIcon"
-        text="Алфавит"
-        onClick={() => setActiveView("page2")}
+        icon="MathIcon"
+        text="Сложение"
+        onClick={() => setActiveView("AddGame")}
+      />
+      <Button
+        icon="MathIcon"
+        text="Умножение"
+        onClick={() => setActiveView("MultiplyGame")}
       />
     </SaidBarContiner>
   );

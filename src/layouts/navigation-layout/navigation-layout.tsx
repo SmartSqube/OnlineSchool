@@ -1,6 +1,7 @@
 import type { FC, PropsWithChildren } from "react";
-import { Container, Content, Header, Right } from "./navigation-layout.styles";
+import { Container, Content, Right } from "./navigation-layout.styles";
 import { Saidbar } from "../components/saidbar";
+import { Header } from "../components/saidbar/header/header";
 
 export const NavigationLayout: FC<PropsWithChildren> = ({ children }) => {
   return (
