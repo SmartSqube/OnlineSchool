@@ -38,7 +38,7 @@ export const GameInfo: FC<GameInfoProps> = ({
     return (
       <div>
         <h1>{`Уровень: ${lvl}`}</h1>
-        <Stars count={50} />
+        <Stars count={lvl} />
         <Button icon="PlayIcon" text="Играть" onClick={() => setMode("GAME")} />
       </div>
     );
