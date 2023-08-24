@@ -38,6 +38,9 @@ export const ExampleBlock: FC<ExampleBlockProps> = ({
     <form
       onSubmit={(event) => {
         event.preventDefault();
+        if (value === "") {
+          return;
+        }
         if (!exl) {
           return;
         }
@@ -46,6 +49,7 @@ export const ExampleBlock: FC<ExampleBlockProps> = ({
         } else {
           onError();
         }
+
         setValue("");
       }}
     >
