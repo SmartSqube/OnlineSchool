@@ -5,21 +5,21 @@ import { Icon } from "../button";
 import { IconName } from "../../media/icons";
 
 export interface ProgressBarProps {
-  iconName: IconName;
+  iconName?: IconName;
   value: number;
   maxValue: number;
-  color: ColorName;
+  color?: ColorName;
 }
 
 export const Progressbar: FC<ProgressBarProps> = ({
   iconName,
   value,
   maxValue,
-  color,
+  color = "DEFAULT_TEXT_COLOR",
 }) => {
   return (
     <Continer>
-      <Icon name={iconName} />
+      {iconName && <Icon name={iconName} />}
       <ProgressbarContainer>
         <Value $color={ColorMap[color]} $value={(100 / maxValue) * value} />
       </ProgressbarContainer>

@@ -1,10 +1,13 @@
 import { styled } from "styled-components";
 
 export const StarContainer = styled.div`
-  padding: 8px;
-  max-width: 400px;
-  font-size: 40px;
-  color: #1c4a15;
-  overflow-y: hidden;
-  overflow-x: auto;
+  display: flex;
+  flex-direction:column;
 `;
+export const Item = styled.div`
+  display: flex;
+  gap: 16px;
+`
+export const Title = styled.div`
+  flex-shrink: 0;
+`
