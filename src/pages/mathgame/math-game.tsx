@@ -14,13 +14,16 @@ export interface MathGameProps {
   onWin: (knowledge: number[]) => void;
   onLos: (knowledge: number[]) => void;
 }
+const knowladgeRange = (knowledge: number[]) => {
+  return knowledge.map((n) => (n < 0 ? 0 : n > 10 ? 10 : n));
+};
 
 const genKnowladge = (lvl: number, knowledge: number[]) => {
   const result: number[] = [];
   for (let i = 0; i < lvl || i < knowledge.length; i++) {
     result.push(knowledge[i] || 0);
   }
-  return result.map((n) => (n < 0 ? 0 : n));
+  return knowladgeRange(result);
 };
 
 export const MathGame: FC<MathGameProps> = memo(
@@ -86,6 +89,7 @@ export const MathGame: FC<MathGameProps> = memo(
             sign={sign}
             signCalc={signCalc}
             onError={() => {
+              result.current = knowladgeRange(result.current);
               result.current[currentIndex] -= 3;
               if (errorCount + 1 >= maxErrors) {
                 onLos(result.current);
@@ -94,6 +98,7 @@ export const MathGame: FC<MathGameProps> = memo(
               setClue(true);
             }}
             onRight={() => {
+              result.current = knowladgeRange(result.current);
               if (!indexLeft.current.length) {
                 onWin(result.current);
               }

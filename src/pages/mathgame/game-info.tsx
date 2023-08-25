@@ -38,8 +38,8 @@ export const GameInfo: FC<GameInfoProps> = ({
     return (
       <div>
         <h1>{`Уровень: ${lvl}`}</h1>
-        <Stars count={lvl} />
         <Button icon="PlayIcon" text="Играть" onClick={() => setMode("GAME")} />
+        <Stars knowladge={knowladge} signCalc={signCalc} sign={sign} />
       </div>
     );
   }
@@ -49,12 +49,13 @@ export const GameInfo: FC<GameInfoProps> = ({
         <div>
           <h1>{`Вы проиграли >:(`}</h1>
           <h1>{`Уровень: ${lvl}`}</h1>
-          <Stars count={lvl} />
+
           <Button
             icon="PlayIcon"
             text="Играть"
             onClick={() => setMode("GAME")}
           />
+          <Stars knowladge={knowladge} signCalc={signCalc} sign={sign} />
         </div>
       </LosContainer>
     );
@@ -65,12 +66,13 @@ export const GameInfo: FC<GameInfoProps> = ({
         <div>
           <h1>{`Вы победили :)`}</h1>
           <h1>{`Уровень: ${lvl}`}</h1>
-          <Stars count={lvl} />
+
           <Button
             icon="PlayIcon"
             text="Играть"
             onClick={() => setMode("GAME")}
           />
+          <Stars knowladge={knowladge} signCalc={signCalc} sign={sign} />
         </div>
       </WinContainer>
     );
