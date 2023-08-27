@@ -17,11 +17,18 @@ export const Progressbar: FC<ProgressBarProps> = ({
   maxValue,
   color = "DEFAULT_TEXT_COLOR",
 }) => {
+  let progress = value;
+  if (progress > maxValue) {
+    progress = maxValue;
+  }
+  if (progress < 0) {
+    progress = 0;
+  }
   return (
     <Continer>
       {iconName && <Icon name={iconName} />}
       <ProgressbarContainer>
-        <Value $color={ColorMap[color]} $value={(100 / maxValue) * value} />
+        <Value $color={ColorMap[color]} $value={(100 / maxValue) * progress} />
       </ProgressbarContainer>
     </Continer>
   );

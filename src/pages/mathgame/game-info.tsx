@@ -2,9 +2,15 @@ import { FC, useContext, useEffect, useState } from "react";
 
 import { MathGame } from "./math-game";
 import { Button } from "../../uiKit/button";
-import { LosContainer, WinContainer } from "./game-info.styles";
+import {
+  LosContainer,
+  ProgressContainer,
+  WinContainer,
+} from "./game-info.styles";
 import { StateContext } from "../../store/context";
 import { Stars } from "./components/stars";
+import { MATH_GAME_MAP } from "./costants";
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 
 interface GameInfoProps {
   knowladge: number[];
@@ -26,18 +32,36 @@ export const GameInfo: FC<GameInfoProps> = ({
     setMode("INFO");
   }, [user]);
 
-  const lvl = knowladge.reduce((acc, item) => {
-    if (item > 0) {
+  let lvl = knowladge.reduce((acc, item) => {
+    if (item >= 3) {
       return acc + 1;
     } else {
       return acc;
     }
   }, 1);
+  if (lvl < 2) {
+    lvl = 2;
+  }
+  const allK = knowladge.reduce((acc, k) => acc + k, 0);
 
+  const maxK = MATH_GAME_MAP.length * 10;
+  const proc = Number(((100 / maxK) * allK).toFixed(1));
   if (mode === "INFO") {
     return (
       <div>
-        <h1>{`Уровень: ${lvl}`}</h1>
+        <ProgressContainer>
+          <CircularProgressbar
+            value={proc}
+            text={`Выучено на ${proc}%`}
+            styles={buildStyles({
+              textColor: "black",
+              pathColor: "blue",
+              trailColor: "gray",
+              textSize: 5,
+            })}
+          />
+        </ProgressContainer>
+        <h1>{`${lvl} примера`}</h1>
         <Button icon="PlayIcon" text="Играть" onClick={() => setMode("GAME")} />
         <Stars knowladge={knowladge} signCalc={signCalc} sign={sign} />
       </div>
@@ -48,8 +72,19 @@ export const GameInfo: FC<GameInfoProps> = ({
       <LosContainer>
         <div>
           <h1>{`Вы проиграли >:(`}</h1>
-          <h1>{`Уровень: ${lvl}`}</h1>
-
+          <ProgressContainer>
+            <CircularProgressbar
+              value={proc}
+              text={`Выучено на ${proc}%`}
+              styles={buildStyles({
+                textColor: "black",
+                pathColor: "blue",
+                trailColor: "gray",
+                textSize: 5,
+              })}
+            />
+          </ProgressContainer>
+          <h1>{`${lvl} примера`}</h1>
           <Button
             icon="PlayIcon"
             text="Играть"
@@ -65,8 +100,19 @@ export const GameInfo: FC<GameInfoProps> = ({
       <WinContainer>
         <div>
           <h1>{`Вы победили :)`}</h1>
-          <h1>{`Уровень: ${lvl}`}</h1>
-
+          <ProgressContainer>
+            <CircularProgressbar
+              value={proc}
+              text={`Выучено на ${proc}%`}
+              styles={buildStyles({
+                textColor: "black",
+                pathColor: "blue",
+                trailColor: "gray",
+                textSize: 5,
+              })}
+            />
+          </ProgressContainer>
+          <h1>{`${lvl} примера`}</h1>
           <Button
             icon="PlayIcon"
             text="Играть"

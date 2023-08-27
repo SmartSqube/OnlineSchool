@@ -16,3 +16,9 @@ export const WinContainer = styled.div`
   width: 100%;
   background: #9eff8f;
 `;
+export const ProgressContainer = styled.div`
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  width: 300px;
+`;

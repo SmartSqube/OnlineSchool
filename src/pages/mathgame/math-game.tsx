@@ -18,6 +18,8 @@ const knowladgeRange = (knowledge: number[]) => {
   return knowledge.map((n) => (n < 0 ? 0 : n > 10 ? 10 : n));
 };
 
+console.log("knowladgeRange", knowladgeRange([-1, -2, 1, 5, 15, 20]));
+
 const genKnowladge = (lvl: number, knowledge: number[]) => {
   const result: number[] = [];
   for (let i = 0; i < lvl || i < knowledge.length; i++) {
@@ -47,6 +49,7 @@ export const MathGame: FC<MathGameProps> = memo(
 
     useEffect(() => {
       if (t > maxTimer) {
+        result.current = knowladgeRange(result.current);
         onLos(result.current);
       }
     }, [maxTimer, onLos, t]);
@@ -65,6 +68,7 @@ export const MathGame: FC<MathGameProps> = memo(
     return (
       <MathGamec>
         <MathGameContainer $color={clue ? "red" : "lightgrey"}>
+          <h1>{`${lvl} примера`}</h1>
           <Progressbar
             color="TIME_COLOR"
             iconName="TimeIcon"
@@ -89,17 +93,17 @@ export const MathGame: FC<MathGameProps> = memo(
             sign={sign}
             signCalc={signCalc}
             onError={() => {
-              result.current = knowladgeRange(result.current);
               result.current[currentIndex] -= 3;
               if (errorCount + 1 >= maxErrors) {
+                result.current = knowladgeRange(result.current);
                 onLos(result.current);
               }
               setErrorCount(errorCount + 1);
               setClue(true);
             }}
             onRight={() => {
-              result.current = knowladgeRange(result.current);
               if (!indexLeft.current.length) {
+                result.current = knowladgeRange(result.current);
                 onWin(result.current);
               }
               result.current[currentIndex]++;
