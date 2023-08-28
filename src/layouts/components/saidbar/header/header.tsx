@@ -8,11 +8,15 @@ import {
 } from "./header.styles";
 
 import { UserMap, UserName } from "../../../../storage/game-users";
-import { StateContext } from "../../../../store/context";
+
 import { Icon } from "../../../../uiKit/button";
+import { StateContext } from "../../../../store/provoder";
 
 export const Header: FC = () => {
-  const { user, activeView, setUser } = useContext(StateContext);
+  const {
+    state: { activeView, useInfo },
+    dispatch,
+  } = useContext(StateContext);
 
   const [select, setSelect] = useState(false);
 
@@ -21,8 +25,8 @@ export const Header: FC = () => {
     <Container>
       <LabelContainer>
         <UserNameLabel onClick={() => setSelect(!select)}>
-          <Icon name={UserMap[user].icon} />
-          <span>{UserMap[user].name}</span>
+          <Icon name={useInfo.icon} />
+          <span>{useInfo.name}</span>
         </UserNameLabel>
         <span> {activeView}</span>
       </LabelContainer>
@@ -30,7 +34,9 @@ export const Header: FC = () => {
       {select && (
         <BlockMenu onClick={() => setSelect(!select)}>
           {userList.map((n) => (
-            <UserNameContainer onClick={() => setUser(n)}>
+            <UserNameContainer
+              onClick={() => dispatch({ type: "SET_USER_NAME", payload: n })}
+            >
               <Icon name={UserMap[n].icon} />
               <span>{UserMap[n].name}</span>
             </UserNameContainer>

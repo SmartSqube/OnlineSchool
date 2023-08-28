@@ -7,10 +7,12 @@ import {
   ProgressContainer,
   WinContainer,
 } from "./game-info.styles";
-import { StateContext } from "../../store/context";
+
 import { Stars } from "./components/stars";
 import { MATH_GAME_MAP } from "./costants";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
+import { StateContext } from "../../store/provoder";
+import { memoryLoadKnoladge } from "../../storage/memory-knowladge";
 
 interface GameInfoProps {
   knowladge: number[];
@@ -25,12 +27,14 @@ export const GameInfo: FC<GameInfoProps> = ({
   signCalc,
   sign,
 }) => {
-  const { user } = useContext(StateContext);
+  const {
+    state: { userName },
+  } = useContext(StateContext);
   const [mode, setMode] = useState<"GAME" | "INFO" | "LOS" | "WIN">("INFO");
 
   useEffect(() => {
     setMode("INFO");
-  }, [user]);
+  }, [userName]);
 
   let lvl = knowladge.reduce((acc, item) => {
     if (item >= 3) {
@@ -42,6 +46,7 @@ export const GameInfo: FC<GameInfoProps> = ({
   if (lvl < 2) {
     lvl = 2;
   }
+
   const allK = knowladge.reduce((acc, k) => acc + k, 0);
 
   const maxK = MATH_GAME_MAP.length * 10;
