@@ -1,12 +1,15 @@
 import { FC, useContext } from "react";
 
-import { StateContext } from "../../store/context";
 import { GameInfo } from "./game-info";
+import { StateContext } from "../../store/provoder";
 
 export const MultiplyGame: FC = () => {
-  const { memory, saveMemory } = useContext(StateContext);
+  const {
+    state: { multyplyKnowladge },
+    dispatch,
+  } = useContext(StateContext);
 
-  const knowladge = memory.multiplyKnowladge || [];
+  const knowladge = multyplyKnowladge || [];
 
   return (
     <GameInfo
@@ -14,7 +17,7 @@ export const MultiplyGame: FC = () => {
       sign="*"
       signCalc={(a, b) => a * b}
       onSave={(result) => {
-        saveMemory({ multiplyKnowladge: result });
+        dispatch({ type: "SET_MULTIPLY_KNOWLAGE", payload: result });
       }}
     />
   );

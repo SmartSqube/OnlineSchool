@@ -1,41 +1,30 @@
-import { UserName } from "./game-users";
+import { UserMap, UserName } from "./game-users";
 
-export interface GameMemory {
-  addKnowladge?: number[];
-  subKnowladge?: number[];
-  multiplyKnowladge?: number[];
-  divisKnowladge?: number[];
-}
-
-let memory: GameMemory = {};
-
-export function saveGameMemory(m: GameMemory) {
-  memory = m;
-  const user = localStorage.getItem("user-name") || "Monkey";
-  const objtext = JSON.stringify(memory);
-  localStorage.setItem(user, objtext);
-}
-
-export function loadGameMemory(user: UserName) {
+export function setGameMemoryUser(user: UserName) {
   localStorage.setItem("user-name", user);
-  const objtext = localStorage.getItem(user);
+}
+
+export function getGameMemoryUser() {
+  const user = localStorage.getItem("user-name");
+  if (typeof user === "string" && UserMap[user as UserName]) {
+    return user as UserName;
+  }
+  return "Monkey";
+}
+
+export function saveGameMemory(key: string, obj: any) {
+  const user = getGameMemoryUser();
+  const objtext = JSON.stringify(obj);
+  localStorage.setItem(`${user}-${key}`, objtext);
+}
+
+export function loadGameMemory(key: string) {
+  const user = getGameMemoryUser();
+  const objtext = localStorage.getItem(`${user}-${key}`);
   try {
     if (objtext) {
-      memory = JSON.parse(objtext);
-      if (typeof memory !== "object") {
-        memory = {};
-      }
-      return;
+      return JSON.parse(objtext);
     }
   } catch (e) {}
-  memory = {};
+  return undefined;
 }
-
-export function getGameMemory() {
-  return memory;
-}
-export function getGameUser() {
-  return (localStorage.getItem("user-name") || "Monkey") as UserName;
-}
-
-loadGameMemory(getGameUser());

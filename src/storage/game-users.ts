@@ -1,6 +1,6 @@
-import { IconMap, IconName } from "../media/icons";
+import { IconName } from "../media/icons";
 
-interface UserInfo {
+export interface UserInfo {
   name: string;
   icon: IconName;
 }
