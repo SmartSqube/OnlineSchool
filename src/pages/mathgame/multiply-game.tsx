@@ -5,14 +5,16 @@ import { StateContext } from "../../store/provoder";
 
 export const MultiplyGame: FC = () => {
   const {
-    state: { multyplyKnowladge },
+    state: { multyplyKnowladge, multyplyHistory },
     dispatch,
   } = useContext(StateContext);
 
   const knowladge = multyplyKnowladge || [];
+  const history = multyplyHistory || [];
 
   return (
     <GameInfo
+      history={history}
       knowladge={knowladge}
       sign="*"
       signCalc={(a, b) => a * b}

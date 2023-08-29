@@ -5,14 +5,16 @@ import { StateContext } from "../../store/provoder";
 
 export const AddGame: FC = () => {
   const {
-    state: { addKnowladge },
+    state: { addKnowladge, addHistory },
     dispatch,
   } = useContext(StateContext);
 
   const knowladge = addKnowladge || [];
+  const history = addHistory || [];
 
   return (
     <GameInfo
+      history={history}
       knowladge={knowladge}
       sign="+"
       signCalc={(a, b) => a + b}

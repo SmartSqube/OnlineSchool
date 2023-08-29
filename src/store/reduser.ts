@@ -1,6 +1,11 @@
 import { getGameMemoryUser, setGameMemoryUser } from "../storage/game-memory";
 import { UserInfo, UserMap, UserName } from "../storage/game-users";
 import {
+  ResoultDay,
+  memoryLoadHistory,
+  memorySaveHistory,
+} from "../storage/memory-history";
+import {
   memoryLoadKnoladge,
   memorySaveKnoladge,
 } from "../storage/memory-knowladge";
@@ -17,6 +22,10 @@ export type State = {
   multyplyKnowladge: number[];
   divKnowladge: number[];
   subKnowladge: number[];
+  addHistory: ResoultDay[];
+  multyplyHistory: ResoultDay[];
+  divHistory: ResoultDay[];
+  subHistory: ResoultDay[];
 };
 
 export const initialState: State = {
@@ -30,6 +39,10 @@ export const initialState: State = {
   multyplyKnowladge: memoryLoadKnoladge("multiplication"),
   divKnowladge: memoryLoadKnoladge("division"),
   subKnowladge: memoryLoadKnoladge("subtraction"),
+  addHistory: memoryLoadHistory("addition"),
+  multyplyHistory: memoryLoadHistory("multiplication"),
+  divHistory: memoryLoadHistory("division"),
+  subHistory: memoryLoadHistory("subtraction"),
 };
 
 export type Action =
@@ -49,6 +62,10 @@ const computable = (state: State) => {
     multyplyKnowladge: memoryLoadKnoladge("multiplication"),
     divKnowladge: memoryLoadKnoladge("division"),
     subKnowladge: memoryLoadKnoladge("subtraction"),
+    addHistory: memoryLoadHistory("addition"),
+    multyplyHistory: memoryLoadHistory("multiplication"),
+    divHistory: memoryLoadHistory("division"),
+    subHistory: memoryLoadHistory("subtraction"),
   };
 };
 
@@ -61,15 +78,20 @@ export const rootReduser = (state: State, action: Action) => {
       return computable(state);
     case "SET_ADD_KNOWLAGE":
       memorySaveKnoladge("addition", action.payload);
+      memorySaveHistory("addition", action.payload);
       return computable(state);
     case "SET_MULTIPLY_KNOWLAGE":
       memorySaveKnoladge("multiplication", action.payload);
+      memorySaveHistory("multiplication", action.payload);
+
       return computable(state);
     case "SET_DIVIZ_KNOWLAGE":
       memorySaveKnoladge("division", action.payload);
+      memorySaveHistory("division", action.payload);
       return computable(state);
     case "SET_SUB_KNOWLAGE":
       memorySaveKnoladge("subtraction", action.payload);
+      memorySaveHistory("subtraction", action.payload);
       return computable(state);
     default:
       return computable(state);
