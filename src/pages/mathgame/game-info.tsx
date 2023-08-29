@@ -13,6 +13,7 @@ import { MATH_GAME_MAP } from "./costants";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import { StateContext } from "../../store/provoder";
 import { ResoultDay } from "../../storage/memory-history";
+import { Chart } from "../../uiKit/chart/chart";
 
 interface GameInfoProps {
   knowladge: number[];
@@ -44,6 +45,7 @@ export const GameInfo: FC<GameInfoProps> = ({
   if (mode === "INFO") {
     return (
       <div>
+        <Chart value={history.map((item) => item.currentLvl)} />
         <h1>{`${lvl} примера`}</h1>
         <Button icon="PlayIcon" text="Играть" onClick={() => setMode("GAME")} />
         <Stars knowladge={knowladge} signCalc={signCalc} sign={sign} />
@@ -55,7 +57,7 @@ export const GameInfo: FC<GameInfoProps> = ({
       <LosContainer>
         <div>
           <h1>{`Вы проиграли >:(`}</h1>
-
+          <Chart value={history.map((item) => item.currentLvl)} />
           <h1>{`${lvl} примера`}</h1>
           <Button
             icon="PlayIcon"
@@ -72,6 +74,7 @@ export const GameInfo: FC<GameInfoProps> = ({
       <WinContainer>
         <div>
           <h1>{`Вы победили :)`}</h1>
+          <Chart value={history.map((item) => item.currentLvl)} />
           <h1>{`${lvl} примера`}</h1>
           <Button
             icon="PlayIcon"
