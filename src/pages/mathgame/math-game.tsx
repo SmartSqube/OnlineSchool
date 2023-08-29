@@ -18,8 +18,6 @@ const knowladgeRange = (knowledge: number[]) => {
   return knowledge.map((n) => (n < 0 ? 0 : n > 10 ? 10 : n));
 };
 
-console.log("knowladgeRange", knowladgeRange([-1, -2, 1, 5, 15, 20]));
-
 const genKnowladge = (lvl: number, knowledge: number[]) => {
   const result: number[] = [];
   for (let i = 0; i < lvl || i < knowledge.length; i++) {
