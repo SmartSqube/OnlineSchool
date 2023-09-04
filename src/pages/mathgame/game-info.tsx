@@ -41,11 +41,14 @@ export const GameInfo: FC<GameInfoProps> = ({
 
   const proc = history.at(-1)?.currentProc || 0;
   const lvl = history.at(-1)?.currentLvl || 2;
-  console.log(history);
+  const lastDate = `${history.at(-1)?.data}`;
   if (mode === "INFO") {
     return (
       <div>
-        <Chart value={history.map((item) => item.currentLvl)} />
+        <Chart
+          lastDate={lastDate}
+          value={history.map((item) => item.currentLvl)}
+        />
         <h1>{`${lvl} примера`}</h1>
         <Button icon="PlayIcon" text="Играть" onClick={() => setMode("GAME")} />
         <Stars knowladge={knowladge} signCalc={signCalc} sign={sign} />
@@ -57,7 +60,10 @@ export const GameInfo: FC<GameInfoProps> = ({
       <LosContainer>
         <div>
           <h1>{`Вы проиграли >:(`}</h1>
-          <Chart value={history.map((item) => item.currentLvl)} />
+          <Chart
+            lastDate={lastDate}
+            value={history.map((item) => item.currentLvl)}
+          />
           <h1>{`${lvl} примера`}</h1>
           <Button
             icon="PlayIcon"
@@ -74,7 +80,10 @@ export const GameInfo: FC<GameInfoProps> = ({
       <WinContainer>
         <div>
           <h1>{`Вы победили :)`}</h1>
-          <Chart value={history.map((item) => item.currentLvl)} />
+          <Chart
+            lastDate={lastDate}
+            value={history.map((item) => item.currentLvl)}
+          />
           <h1>{`${lvl} примера`}</h1>
           <Button
             icon="PlayIcon"
